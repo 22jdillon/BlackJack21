@@ -67,6 +67,7 @@ function startGame() {
     console.log(yourSum);
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stand").addEventListener("click", stand);
+    document.getElementById("restart").addEventListener("click", restart)
 
 }
 
@@ -122,6 +123,25 @@ function stand() {
     document.getElementById("dealer-sum").innerText = dealerSum
     document.getElementById("your-sum").innerText = yourSum;
     document.getElementById("results").innerText = message;
+}
+
+function restart() {
+    dealerSum = 0;
+    yourSum = 0;
+    dealerAceCount = 0;
+    yourAceCount = 0;
+    canHit = true;
+
+    document.getElementById("dealer-cards").innerHTML = '<img id="hidden" src="./images/BACK.png">';
+    document.getElementById("your-cards").innerHTML = "";
+    document.getElementById("dealer-sum").innerText = "";
+    document.getElementById("your-sum").innerText = "";
+    document.getElementById("results").innerText = "";
+
+    buildDeck()
+    shuffleDuck()
+    startGame()
+
 }
 
 function getValue(card) {
