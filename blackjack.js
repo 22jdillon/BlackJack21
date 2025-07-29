@@ -82,6 +82,13 @@ function hit() {
     yourAceCount += checkAce(card);
     document.getElementById("your-cards").append(cardImg);
 
+    let adjustedSum = reduceAce(yourSum, yourAceCount)
+    
+    if (adjustedSum > 21) {
+        canHit = false;
+        stand();
+    } 
+    
     if (reduceAce(yourSum, yourAceCount) > 20)
         canHit = false;
 
