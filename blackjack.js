@@ -8,6 +8,9 @@ var hidden;
 var deck;
 
 var canHit = true; //allows the plater to draw while yourSum <= 21
+var visHit = true;
+var visStand = true;
+var visRestart = false;
 
 window.onload = function() {
     buildDeck();
@@ -25,14 +28,14 @@ function buildDeck() {
             deck.push(values[j] + "-" + types[i]); //A-C -> K-C, A-D -> K-D
         }
     }
-    // console.log(deck);
+    console.log(deck);
 }
 
 function shuffleDuck() {
     for (let i = 0; i < deck.length; i++) {
         let j = Math.floor(Math.random() * deck.length); //Math.random is going to give a number between 0 and 1 and then it will multiply that by the length of the deck which gives us a number which gives us a floating number between 0-51.999... so we will use math.floor to get an intiger. 
         let temp = deck[i];
-        deck[i] = deck[j]
+        deck[i] = deck[j];
         deck[j] = temp;
     }
     console.log(deck);
@@ -42,8 +45,8 @@ function startGame() {
     hidden = deck.pop(); //Pop is going to remove a card from the end of the arry
     dealerSum += getValue(hidden);
     dealerAceCount += checkAce(hidden);
-    // console.log(hidden);
-    // console.log(dealerSum);
+    console.log(hidden);
+    console.log(dealerSum);
     
     // This is appending cards to the dealers hand until the dealer reaches a sum of 17 or above
     while (dealerSum < 17) {
@@ -67,8 +70,12 @@ function startGame() {
     console.log(yourSum);
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stand").addEventListener("click", stand);
-    document.getElementById("restart").addEventListener("click", restart)
+    document.getElementById("restart").addEventListener("click", restart);
 
+    document.getElementById("hit").style.display = "inline";
+    document.getElementById("stand").style.display = "inline";
+
+    document.getElementById("restart").style.display = "none";
 }
 
 function hit() {
@@ -123,6 +130,11 @@ function stand() {
     document.getElementById("dealer-sum").innerText = dealerSum
     document.getElementById("your-sum").innerText = yourSum;
     document.getElementById("results").innerText = message;
+
+    document.getElementById("hit").style.display = "none";
+    document.getElementById("stand").style.display = "none";
+
+    document.getElementById("restart").style.display = "inline";
 }
 
 function restart() {
@@ -143,6 +155,19 @@ function restart() {
     startGame()
 
 }
+
+// function toggle() {
+//     let toggle = () => {
+//         let element = document.getElementById("button");
+//         let hidden = element.getAttribute("hidden")
+
+//         if (hidden) {
+//             element.removeAttribute("hidden");
+//         } else {
+//             element.setAttribute("hidden", "hidden");
+//         }
+//     }
+// }
 
 function getValue(card) {
     let data = card.split("-"); // Each card is has a value (A, 1, 2, ect) and then the type of card (C-clubs, D-diamonds, H-harts and S-spades) for exsample "4-S" or 4 of spades so when we call split on the dash its splitting the values into 2 parts and get an array ["4", "S"]
