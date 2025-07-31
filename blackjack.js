@@ -52,7 +52,7 @@ function startGame() {
     while (dealerSum < 17) {
         let cardImg = document.createElement("img"); // Its creating an image tag like <img>
         let card = deck.pop(); // This gets a card form the deck
-        cardImg.src = "./images/" + card + ".png"; // Then it snets the source of the image tag (src="") then in those quotations it print ./cards/ followed by the card type e.g. 8-C then it end it with the ".png" for this exsample that will come out to "<img src="./cards/8-C.png">
+        cardImg.src = "./images/" + card + ".png"f; // Then it snets the source of the image tag (src="") then in those quotations it print ./cards/ followed by the card type e.g. 8-C then it end it with the ".png" for this exsample that will come out to "<img src="./cards/8-C.png">
         dealerSum += getValue(card); // This increments the dealer sum
         dealerAceCount += checkAce(card); // This does the ace count for the dealer
         document.getElementById("dealer-cards").append(cardImg); // Then it takes the image tag "<img src="./cards/8-C.png">" and appends it to the "dealer-cards" div
