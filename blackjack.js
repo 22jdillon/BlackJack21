@@ -208,7 +208,7 @@ function reduceAce(playerSum, playerAceCount) {
 
 let money = document.querySelector(".money-cost")
 
-function incrementsMoney() {
+function incrementMoney() {
     money.innerHTML = parseFloat(money.innerHTML) +1
 
 }
