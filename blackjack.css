@@ -1,6 +1,31 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    display: flex;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 20px;
+}
+
+#container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+#clickerGame {
+    padding-left: 100px;
+}
+
+#creditcardIMG {
+    width: 400px;
+}
+
+#blackjackGame {
+    padding-left: 150px;
+    flex-grow: 1;
+    text-align: center;
+
 }
 
 #dealer-cards img {

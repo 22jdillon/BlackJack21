@@ -200,3 +200,15 @@ function reduceAce(playerSum, playerAceCount) {
     }
     return playerSum;
 }
+
+
+
+
+
+
+let money = document.querySelector(".money-cost")
+
+function incrementsMoney() {
+    money.innerHTML = parseFloat(money.innerHTML) +1
+
+}

@@ -6,33 +6,28 @@
         <title>Black Jack</title>
         <link rel="stylesheet" href="blackjack.css">
         <script src="blackjack.js"></script>
+        <script src="clicker.js"></script>
     </head>
 
     <body>
-        <h2>Dealer: <span id="dealer-sum"></span></h2>
-        <div id="dealer-cards">
-            <img id="hidden" src="./images/BACK.png">
-
-        </div>
-
-
-        <h2>You: <span id="your-sum"></span></h2>
-        <div id="your-cards"></div>
-
-        <button id="hit" type="button">Hit</button>
-        <button id="stand">Stand</button>
-        <button id="restart">Restart</button>
-        <p id="results"></p>
-        <section>
-            <div class="main">
-                <div class="left">
-                    <h3>Money: 0</h3>
-                    <img src="./clicker/creditcard.png">
-                </div>
-                <div class="right">
-                    right
-                </div>
+        <div id="container">
+            <div id="clickerGame">
+                <h3>Money: <span class="money-cost">0</span></h3>
+                <img id="creditcardIMG" src="./clicker/creditcard.png" onclick="incrementMoney()">
             </div>
-        </section>
+            
+            <div id="blackjackGame">
+                <h2>Dealer: <span id="dealer-sum"></span></h2>
+                <div id="dealer-cards">
+                    <img id="hidden" src="./images/BACK.png">
+                </div>
+                <h2>You: <span id="your-sum"></span></h2>
+                <div id="your-cards"></div>
+                <button id="hit" type="button">Hit</button>
+                <button id="stand">Stand</button>
+                <button id="restart">Restart</button>
+                <p id="results"></p>
+            </div>
+        </div>
     </body>
 </html>
