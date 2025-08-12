@@ -156,19 +156,6 @@ function restart() {
 
 }
 
-// function toggle() {
-//     let toggle = () => {
-//         let element = document.getElementById("button");
-//         let hidden = element.getAttribute("hidden")
-
-//         if (hidden) {
-//             element.removeAttribute("hidden");
-//         } else {
-//             element.setAttribute("hidden", "hidden");
-//         }
-//     }
-// }
-
 function getValue(card) {
     let data = card.split("-"); // Each card is has a value (A, 1, 2, ect) and then the type of card (C-clubs, D-diamonds, H-harts and S-spades) for exsample "4-S" or 4 of spades so when we call split on the dash its splitting the values into 2 parts and get an array ["4", "S"]
     let value = data[0];
