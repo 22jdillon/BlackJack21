@@ -40,6 +40,18 @@ body {
     margin: 1px;
 }
 
+#bet {
+    width: 100px;
+    height: 50 px;
+    font-size: 20px;
+}
+
+#total-bet {
+    width: 50px;
+    height: 50 px;
+    font-size: 20px;
+}
+
 #hit {
     width: 100px;
     height: 50 px;

@@ -12,10 +12,19 @@ var visHit = true;
 var visStand = true;
 var visRestart = false;
 
+let money = document.querySelector(".money-cost");
+let playerMoney = 10;
+let currentBet = 0;
+
+
+
 window.onload = function() {
     buildDeck();
     shuffleDuck();
     startGame();
+    checkMoney()
+
+    document.getElementById("bet").addEventListener("click", placeBet);
 }
 
 function buildDeck() {
@@ -72,10 +81,33 @@ function startGame() {
     document.getElementById("stand").addEventListener("click", stand);
     document.getElementById("restart").addEventListener("click", restart);
 
-    document.getElementById("hit").style.display = "inline";
-    document.getElementById("stand").style.display = "inline";
+
+
+
+
+
+
+
+
+
+
+
+
+    document.getElementById("hit").style.display = "none";
+    document.getElementById("stand").style.display = "none";
 
     document.getElementById("restart").style.display = "none";
+
+
+
+
+
+
+
+
+
+
+
 }
 
 function hit() {
@@ -116,24 +148,28 @@ function stand() {
     }
     else if (dealerSum > 21) {
         message = "You Win!"
+        playerMoney += currentBet*2;
     }
     else if (yourSum == dealerSum) {
         message = "Tie!"
+        playerMoney += currentBet;
     }
     else if (yourSum > dealerSum) {
         message = "You Win!"
+        playerMoney += currentBet*2;
     }
     else if (yourSum < dealerSum) {
         message = "You Lose!"
     }
 
-    document.getElementById("dealer-sum").innerText = dealerSum
+    checkMoney();
+
+    document.getElementById("dealer-sum").innerText = dealerSum;
     document.getElementById("your-sum").innerText = yourSum;
     document.getElementById("results").innerText = message;
 
     document.getElementById("hit").style.display = "none";
     document.getElementById("stand").style.display = "none";
-
     document.getElementById("restart").style.display = "inline";
 }
 
@@ -144,16 +180,27 @@ function restart() {
     yourAceCount = 0;
     canHit = true;
 
+    currentBet = 0;
+
     document.getElementById("dealer-cards").innerHTML = '<img id="hidden" src="./images/BACK.png">';
     document.getElementById("your-cards").innerHTML = "";
     document.getElementById("dealer-sum").innerText = "";
     document.getElementById("your-sum").innerText = "";
     document.getElementById("results").innerText = "";
 
+    document.getElementById("hit").style.display = "none";
+    document.getElementById("stand").style.display = "none";
+    document.getElementById("restart").style.display = "none";
+
+    document.getElementById("total-bet").style.display = "inline";
+    document.getElementById("bet").style.display = "inline";
+    document.getElementById("total-bet").disabled = false;
+    document.getElementById("bet").disabled = false;
+    document.getElementById("total-bet").value = "";
+
     buildDeck()
     shuffleDuck()
     startGame()
-
 }
 
 function getValue(card) {
@@ -188,8 +235,37 @@ function reduceAce(playerSum, playerAceCount) {
     return playerSum;
 }
 
-let money = document.querySelector(".money-cost")
-
 function incrementMoney() {
     money.innerHTML = parseFloat(money.innerHTML) + 1
+}
+
+function checkMoney() {
+    document.querySelector(".money-cost").innerText = playerMoney
+}
+
+function placeBet() {
+    let betInput = document.getElementById("total-bet")
+    let bet = parseInt(betInput.value);
+
+    if (!(bet > 0)) {
+        alert("Bet is invalid, try again.")
+        return;
+    }
+    if (bet > playerMoney) {
+        alert("Not enough money.")
+        return;
+    }
+
+
+    currentBet = bet;
+    playerMoney -= bet;
+    checkMoney()
+    console.log("Bet placed: $" +currentBet);
+
+
+    document.getElementById("total-bet").style.display = "none";
+    document.getElementById("bet").style.display = "none";
+    
+    document.getElementById("hit").style.display = "inline";
+    document.getElementById("stand").style.display = "inline";
 }
