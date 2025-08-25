@@ -18,7 +18,6 @@ window.onload = function() {
     buildDeck();
     shuffleDuck();
     startGame();
-    incrementMoney()
 }
 
 function buildDeck() {
