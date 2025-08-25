@@ -12,10 +12,13 @@ var visHit = true;
 var visStand = true;
 var visRestart = false;
 
+let money = document.querySelector(".money-cost")
+
 window.onload = function() {
     buildDeck();
     shuffleDuck();
     startGame();
+    incrementMoney()
 }
 
 function buildDeck() {
@@ -188,14 +191,6 @@ function reduceAce(playerSum, playerAceCount) {
     return playerSum;
 }
 
-
-
-
-
-
-let money = document.querySelector(".money-cost")
-
 function incrementMoney() {
-    money.innerHTML = parseFloat(money.innerHTML) +1
-
+    money.innerHTML = parseFloat(money.innerHTML) + 1
 }
