@@ -5,28 +5,30 @@
         <meta name="viewport" content="width=device-width, initial - scale=1.0">
         <title>Black Jack</title>
         <link rel="stylesheet" href="blackjack.css">
-        <script src="blackjack.js"></script>
     </head>
 
     <body>
-        <div id="container">
-            <div class="clickerGame">
-                <h3>Money: <span class="money-cost">0</span></h3>
-                <img src="./clicker/creditcard.png" alt="" srcset="" class="money-image" onclick="incrementMoney()">
-            </div>
-            
-            <div id="blackjackGame">
-                <h2>Dealer: <span id="dealer-sum"></span></h2>
-                <div id="dealer-cards">
-                    <img id="hidden" src="./images/BACK.png">
+        <section>
+            <div id="container">
+                <div class="clickerGame">
+                    <h3>Money: <span class="money-cost">0</span></h3>
+                    <img src="./clicker/creditcard.png" alt="" srcset="" class="money-image" onclick="incrementMoney()">
                 </div>
-                <h2>You: <span id="your-sum"></span></h2>
-                <div id="your-cards"></div>
-                <button id="hit" type="button">Hit</button>
-                <button id="stand">Stand</button>
-                <button id="restart">Restart</button>
-                <p id="results"></p>
+                
+                <div id="blackjackGame">
+                    <h2>Dealer: <span id="dealer-sum"></span></h2>
+                    <div id="dealer-cards">
+                        <img id="hidden" src="./images/BACK.png">
+                    </div>
+                    <h2>You: <span id="your-sum"></span></h2>
+                    <div id="your-cards"></div>
+                    <button id="hit" type="button">Hit</button>
+                    <button id="stand">Stand</button>
+                    <button id="restart">Restart</button>
+                    <p id="results"></p>
+                </div>
             </div>
-        </div>
+        </section>
+        <script src="blackjack.js"></script>
     </body>
 </html>
