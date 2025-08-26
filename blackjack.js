@@ -12,8 +12,9 @@ var visHit = true;
 var visStand = true;
 var visRestart = false;
 
+let yourHand = [];
 let money = document.querySelector(".money-cost");
-let playerMoney = 10;
+let playerMoney = 9;
 let currentBet = 0;
 
 
@@ -51,63 +52,36 @@ function shuffleDuck() {
 }
 
 function startGame() {
+    yourHand = [];
     hidden = deck.pop(); //Pop is going to remove a card from the end of the arry
     dealerSum += getValue(hidden);
     dealerAceCount += checkAce(hidden);
-    console.log(hidden);
-    console.log(dealerSum);
     
-    // This is appending cards to the dealers hand until the dealer reaches a sum of 17 or above
-    while (dealerSum < 17) {
-        let cardImg = document.createElement("img"); // Its creating an image tag like <img>
-        let card = deck.pop(); // This gets a card form the deck
-        cardImg.src = "./images/" + card + ".png"; // Then it snets the source of the image tag (src="") then in those quotations it print ./cards/ followed by the card type e.g. 8-C then it end it with the ".png" for this exsample that will come out to "<img src="./cards/8-C.png">
-        dealerSum += getValue(card); // This increments the dealer sum
-        dealerAceCount += checkAce(card); // This does the ace count for the dealer
-        document.getElementById("dealer-cards").append(cardImg); // Then it takes the image tag "<img src="./cards/8-C.png">" and appends it to the "dealer-cards" div
-    }
-    console.log(dealerSum);
+    let cardImg = document.createElement("img"); // Its creating an image tag like <img>
+    let card = deck.pop(); // This gets a card form the deck
+    cardImg.src = "./images/" + card + ".png"; // Then it snets the source of the image tag (src="") then in those quotations it print ./cards/ followed by the card type e.g. 8-C then it end it with the ".png" for this exsample that will come out to "<img src="./cards/8-C.png">
+    dealerSum += getValue(card); // This increments the dealer sum
+    dealerAceCount += checkAce(card); // This does the ace count for the dealer
+    document.getElementById("dealer-cards").append(cardImg); // Then it takes the image tag "<img src="./cards/8-C.png">" and appends it to the "dealer-cards" div
 
     for (let i =0; i < 2; i++) {
-        let cardImg = document.createElement("img");
         let card = deck.pop();
-        cardImg.src = "./images/" + card + ".png";
+        yourHand.push(card);  // store actual card value
+        let cardImg = document.createElement("img");
+        cardImg.src = "./images/BACK.png"; // hidden until bet
+        cardImg.classList.add("face-down");
+        document.getElementById("your-cards").append(cardImg);
         yourSum += getValue(card); 
         yourAceCount += checkAce(card);
-        document.getElementById("your-cards").append(cardImg);
     }
     console.log(yourSum);
     document.getElementById("hit").addEventListener("click", hit);
     document.getElementById("stand").addEventListener("click", stand);
     document.getElementById("restart").addEventListener("click", restart);
 
-
-
-
-
-
-
-
-
-
-
-
-
     document.getElementById("hit").style.display = "none";
     document.getElementById("stand").style.display = "none";
-
     document.getElementById("restart").style.display = "none";
-
-
-
-
-
-
-
-
-
-
-
 }
 
 function hit() {
@@ -134,13 +108,22 @@ function hit() {
 
 }
 
-
 function stand() {
     dealerSum = reduceAce(dealerSum, dealerAceCount);
     yourSum = reduceAce(yourSum, yourAceCount);
 
     canHit = false;
     document.getElementById("hidden").src = "./images/" + hidden + ".png";
+    // document.getElementById("your-cards").src = "./images/" + your-cards + ".png";
+
+    while (dealerSum < 17) {
+        let cardImg = document.createElement("img"); // Its creating an image tag like <img>
+        let card = deck.pop(); // This gets a card form the deck
+        cardImg.src = "./images/" + card + ".png"; // Then it snets the source of the image tag (src="") then in those quotations it print ./cards/ followed by the card type e.g. 8-C then it end it with the ".png" for this exsample that will come out to "<img src="./cards/8-C.png">
+        dealerSum += getValue(card); // This increments the dealer sum
+        dealerAceCount += checkAce(card); // This does the ace count for the dealer
+        document.getElementById("dealer-cards").append(cardImg); // Then it takes the image tag "<img src="./cards/8-C.png">" and appends it to the "dealer-cards" div
+    }
 
     let message = "";
     if (yourSum > 21) {
@@ -237,6 +220,7 @@ function reduceAce(playerSum, playerAceCount) {
 
 function incrementMoney() {
     money.innerHTML = parseFloat(money.innerHTML) + 1
+    playerMoney += 1;
 }
 
 function checkMoney() {
@@ -260,12 +244,18 @@ function placeBet() {
     currentBet = bet;
     playerMoney -= bet;
     checkMoney()
-    console.log("Bet placed: $" +currentBet);
-
+    // console.log("Bet placed: $" +currentBet);
 
     document.getElementById("total-bet").style.display = "none";
     document.getElementById("bet").style.display = "none";
-    
     document.getElementById("hit").style.display = "inline";
     document.getElementById("stand").style.display = "inline";
+
+    
+    let cardImgs = document.querySelectorAll("#your-cards img");
+    for (let i = 0; i < yourHand.length; i++) {
+        cardImgs[i].src = "./images/" + yourHand[i] + ".png";
+    }
 }
+
+incrementMoney()

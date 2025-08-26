@@ -1,5 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(0, 86, 0);
+    color: rgb(246, 246, 231);
     text-align: center;
     display: flex;
     justify-content: flex-start;
@@ -10,22 +12,30 @@ body {
 #container {
     display: flex;
     flex-direction: row;
-    align-items: center;
+    width: 100%;
+    height: 100%;
 }
 
 #clickerGame {
-    padding-left: 100px;
+    flex: 0 0 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+#blackjackGame {
+    flex: 0 0 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
 }
 
 .creditcardIMG {
     width: 400px;
-}
-
-#blackjackGame {
-    padding-left: 150px;
-    flex-grow: 1;
-    text-align: center;
-
 }
 
 #dealer-cards img {

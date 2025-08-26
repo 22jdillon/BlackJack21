@@ -12,7 +12,7 @@
             <div id="container">
                 <div class="clickerGame">
                     <h3>Money: <span class="money-cost">0</span></h3>
-                    <img src="./clicker/creditcard.png" alt="" srcset="" class="money-image" onclick="incrementMoney()">
+                    <img src="./clicker/creditcard.png" alt="" srcset="" class="money-image" onclick="incrementMoney()" draggable="false">
                 </div>
                 
                 <div id="blackjackGame">
@@ -21,6 +21,9 @@
                         <img id="hidden" src="./images/BACK.png">
                     </div>
                     <h2>You: <span id="your-sum"></span></h2>
+                    <div id="player-cards">
+                        <div id="your-cards"></div>
+                    </div>
                     <div id="your-cards"></div>
                     <input id="total-bet" type="number" min="1" placeholder="Bet:">
                     <button id="bet">Submit</button>
